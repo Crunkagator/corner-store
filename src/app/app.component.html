@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id='map' class='map-container'></div>
+  <p>It works
+      Киселева 9, Минск, Беларусь
+  </p>
+  <input type="text" #shname placeholder="shop name">
+  <input type="text" #address placeholder="address">
+  <button class="btn" (click)='addShop(shname.value, address.value)'>Add shop</button>
+  <div *ngIf='shops'>
+    <div *ngFor='let s of shops' class="border wrapper">
+      <div>Shopname: {{s.name}}</div>
+      <div>Address: {{s.address}}</div>
+      <div>ID: {{s.ID}}</div>
+      <div>Working Hours: {{s.hours}}</div>
+      <div>Goods:
+        <div *ngIf='s.goods.length == 0'>No items here :(</div> 
+        <div *ngIf='s.goods.length > 0'>
+          <div class="items-wrapper" *ngFor='let i of s.goods'>
+            <div>Name : {{i.itemName}}</div>
+            <div>Price : {{i.price}}</div>
+            <div>Description : {{i.description}}</div>
+            <button (click)='deleteItem(i, s.ID)'>Delete Item</button>
+          </div>
+        </div>
+        <button id='goods' (click)='addGoods(s.ID)'>Add goods</button>
+        <button (click)='deleteShop(s)'>Delete Shop</button> 
+      </div>
+    </div>
+  </div>
+</body>
+</html>

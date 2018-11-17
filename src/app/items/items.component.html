@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Add new item</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <div class="input-group">
+        <label for="itemName">Name
+          <input #iName id="itemName" class="form-control" placeholder="item name">
+        </label>
+        <label for="price">Price
+          <input id="price" class="form-control" placeholder="price" #price>
+          <select #cur>
+            <option value="dollar" name="dollar">$</option>
+            <option value="BYN" name="BYN">BYN</option>
+            <option value="RUR" name="RUR">RUR</option>
+          </select>
+        </label>
+        <label for="item-description">Description
+          <textarea #descr id="item-description" class="item-description" placeholder="add some description"></textarea>
+        </label>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close({'itemName' : iName.value, 'price': price.value + ' ' +cur.value, 'description' : descr.value})">Save</button>
+</div>
