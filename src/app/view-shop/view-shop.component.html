@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h4 class="modal-title">Shop Info</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <div class="list-group list-group-flush"><h3 class="my-3">Info:</h3>
+      <div class="list-group-item">Shop's Name: {{shop.name}}</div>
+      <div class="list-group-item">Address: {{shop.address}}</div>
+      <div class="list-group-item">ID: {{shop.ID}}</div>
+      <div class="list-group-item">Working Hours: {{shop.schedule}}</div>
+    </div>
+    <div><h4 class="my-3">Goods:</h4>
+      <div *ngIf='shop.goods.length == 0'>No items here :(</div>
+      <div *ngIf='shop.goods.length > 0' class="list-group">
+        <div class="list-group-item list-group-item-light" *ngFor='let i of shop.goods'>
+          <div>Name : {{i.itemName}}</div>
+          <div>Price : {{i.price}}</div>
+          <div>Description : {{i.description}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Close</button>
+</div>

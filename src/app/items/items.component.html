@@ -9,23 +9,21 @@
     <div class="form-group">
       <div class="input-group">
         <label for="itemName">Name
-          <input #iName id="itemName" class="form-control" placeholder="item name">
+          <input id="itemName" class="form-control" placeholder="item name" [formControl]='itemName'>
         </label>
+        <br>
         <label for="price">Price
-          <input id="price" class="form-control" placeholder="price" #price>
-          <select #cur>
-            <option value="dollar" name="dollar">$</option>
-            <option value="BYN" name="BYN">BYN</option>
-            <option value="RUR" name="RUR">RUR</option>
-          </select>
+          <input id="price" class="form-control" placeholder="price" [formControl]='price'>
         </label>
+        <br>
         <label for="item-description">Description
-          <textarea #descr id="item-description" class="item-description" placeholder="add some description"></textarea>
+          <textarea id="item-description" class="item-description" placeholder="add some description" [formControl]='description'></textarea>
         </label>
+        <div id='error'></div>
       </div>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close({'itemName' : iName.value, 'price': price.value + ' ' +cur.value, 'description' : descr.value})">Save</button>
+  <button type="button" class="btn btn-outline-dark" (click)="checkInput()">Add item</button>
 </div>

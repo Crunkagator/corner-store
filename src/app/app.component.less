@@ -1,22 +1,39 @@
-.map-container {
-    width: 800px;
-    height: 600px;
+@width: 100%;
+
+.main-container {
+    max-width: 1400px;
     margin: 0 auto;
-    .border();
+    .shoplist-wrapper {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 35%;
+        max-height: 600px;
+    }
+    max-height: 800px;    
 }
 
-.border {
-    border: 2px solid salmon;
+.map-container {
+    flex: 1 1 65%;
+    min-height: 600px;
+    height: 70%;
+    max-height: 800px;
+    border: 2px solid black;
 }
 
-.wrapper {
-    .border();
-    width: 40%;
-    height: auto;
+.shops-wrapper {
+    overflow-y: scroll;
 }
 
-.items-wrapper {
-    border: 1px solid darkslategray;
-    width: 400px;
-    height: auto;
+@media (min-width: 800px) {
+    .main-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    }
+    .map-container {
+        width: 100%;
+    }
+    .shoplist-wrapper {
+        width: 100%;
+    }
 }

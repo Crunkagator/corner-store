@@ -3,35 +3,34 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Page Title</title>
+  <title>Corner Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <div id='map' class='map-container'></div>
-  <p>It works
-      Киселева 9, Минск, Беларусь
-  </p>
-  <input type="text" #shname placeholder="shop name">
-  <input type="text" #address placeholder="address">
-  <button class="btn" (click)='addShop(shname.value, address.value)'>Add shop</button>
-  <div *ngIf='shops'>
-    <div *ngFor='let s of shops' class="border wrapper">
-      <div>Shopname: {{s.name}}</div>
-      <div>Address: {{s.address}}</div>
-      <div>ID: {{s.ID}}</div>
-      <div>Working Hours: {{s.hours}}</div>
-      <div>Goods:
-        <div *ngIf='s.goods.length == 0'>No items here :(</div> 
-        <div *ngIf='s.goods.length > 0'>
-          <div class="items-wrapper" *ngFor='let i of s.goods'>
-            <div>Name : {{i.itemName}}</div>
-            <div>Price : {{i.price}}</div>
-            <div>Description : {{i.description}}</div>
-            <button (click)='deleteItem(i, s.ID)'>Delete Item</button>
-          </div>
+  <div class="jumbotron">
+    <h1 style="text-align: center">Corner Store</h1>
+  </div>
+  <div class="main-container">
+    <div id='map' class='map-container'></div>
+    <div class="shoplist-wrapper">
+      <button class="btn btn-outline-dark" (click)='addShop()'>New shop</button>
+      <div *ngIf='shops' class="list-group list-group-flush shops-wrappe">
+        <div *ngFor='let s of shops' class="list-group-item">
+          <a class="list-group-item list-group-item-action flex-column align-items-start">
+            <div (click)='viewInfo(s)'>
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{s.name}}</h5>
+                <small>{{s.goods.length}}</small>
+              </div>
+              <p class="mb-1">{{s.address}}</p>
+              <small>{{s.schedule}}</small>
+            </div>
+            <div class="d-flex flex-row justify-content-around">
+              <button class="btn btn-outline-success" id='goods' (click)='addItem(s.ID)'>Add goods</button>
+              <button class="btn btn-outline-danger" (click)='deleteShop(s)'>Delete Shop</button>
+            </div>
+          </a>
         </div>
-        <button id='goods' (click)='addGoods(s.ID)'>Add goods</button>
-        <button (click)='deleteShop(s)'>Delete Shop</button> 
       </div>
     </div>
   </div>

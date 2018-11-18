@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Add new shop</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <div class="input-group modal-wrapper">
+        <label for="shopName">Name
+          <input id="shopName" class="form-control" placeholder="shop name" [formControl]='shopName'>
+        </label>
+        <br>
+        <label for="address">Address
+          <input id="address" class="form-control" placeholder="address" [formControl]='address'>
+        </label>
+        <br>
+        <label for="schedule">Schedule
+            <input id="schedule" class="form-control" placeholder="working hours" [formControl]='schedule'>
+        </label>
+        <div id='error' (click)='this.style.display = none'></div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="checkInput()">New shop</button>
+</div>
