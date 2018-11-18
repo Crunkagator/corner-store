@@ -27,13 +27,13 @@ export class ItemsComponent implements OnInit {
 
   checkInput() {
     if (this.itemName.status === 'INVALID') {
-      document.getElementById('error').innerHTML = 'Invalid input (must be non-empty and less than 50 symbols)';
+      document.getElementById('error').innerHTML = 'Invalid item name (must be non-empty and less than 50 symbols)';
     }
     if (this.price.status === 'INVALID') {
       document.getElementById('error').innerHTML = `Invalid price format (must be [zzzzzzz] or [xxxxx.yy])`;
     }
     if (this.description.status === 'INVALID') {
-      document.getElementById('error').innerHTML = 'Invalid input (must be non-empty and less than 500 symbols)';
+      document.getElementById('error').innerHTML = 'Description error (must be non-empty and less than 500 symbols)';
     }
     if (this.itemName.status === 'VALID' && this.price.status === 'VALID' && this.description.status === 'VALID') {
       this.activeModal.close({'itemName' : this.itemName.value, 'price': this.price.value, 'description' : this.description.value});

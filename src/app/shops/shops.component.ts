@@ -14,8 +14,11 @@ export class ShopsComponent implements OnInit {
   public schedule: FormControl;
 
   checkInput() {
-    if (this.shopName.status === 'INVALID' || this.address.status === 'INVALID') {
-      document.getElementById('error').innerHTML = 'Invalid input (must be non-empty and less than 100 symbols)';
+    if (this.shopName.status === 'INVALID') {
+      document.getElementById('error').innerHTML = 'Invalid shop name (must be non-empty and less than 100 symbols)';
+    }
+    if (this.address.status === 'INVALID') {
+      document.getElementById('error').innerHTML = `Invalid address (must be non-empty and less than 100 symbols)`;
     }
     if (this.schedule.status === 'INVALID') {
       document.getElementById('error').innerHTML = `Wrong time format: must be h:mm - h:mm`;
