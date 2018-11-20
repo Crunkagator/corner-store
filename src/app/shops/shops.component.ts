@@ -13,26 +13,29 @@ export class ShopsComponent implements OnInit {
   public address: FormControl;
   public schedule: FormControl;
 
+  constructor(public activeModal: NgbActiveModal) { }
+
   checkInput() {
     if (this.shopName.status === 'INVALID') {
-      document.getElementById('error').innerHTML = 'Invalid shop name (must be non-empty and less than 100 symbols)';
+      document.getElementById('errName').innerHTML = `Shop's name must be non-empty and less than 100 symbols`;
     }
     if (this.address.status === 'INVALID') {
-      document.getElementById('error').innerHTML = `Invalid address (must be non-empty and less than 100 symbols)`;
+      document.getElementById('errAddress').innerHTML = `Address must be non-empty and less than 100 symbols`;
     }
     if (this.schedule.status === 'INVALID') {
-      document.getElementById('error').innerHTML = `Wrong time format: must be h:mm - h:mm`;
+      document.getElementById('errSchedule').innerHTML = `Schedule must be non-empty and specified like h:mm - h:mm`;
     }
     if (this.shopName.status === 'VALID' && this.address.status === 'VALID' && this.schedule.status === 'VALID') {
-      this.activeModal.close({ 'name': this.shopName.value, 'address': this.address.value, 'schedule': this.schedule.value });
+      this.activeModal.close({ 'name': this.shopName.value.trim(), 'address': this.address.value, 'schedule': this.schedule.value });
     }
   }
 
-  constructor(public activeModal: NgbActiveModal) { }
-
   ngOnInit() {
-    this.shopName = new FormControl('', [Validators.required, Validators.maxLength(100)]);
-    this.address = new FormControl('', [Validators.required, Validators.maxLength(100)]);
-    this.schedule = new FormControl('', [Validators.required, Validators.pattern(/\d(\d|)\:\d\d\s-\s\d(\d|)\:\d\d/g)]);
+    this.shopName = new FormControl('', [Validators.required, Validators.maxLength(100),
+      Validators.pattern(/[a-zА-Я0-9\/!-+'*#]+/gi)]);
+    this.address = new FormControl('', [Validators.required, Validators.maxLength(100),
+      Validators.pattern(/^[а-яА-Я]+\s\d+\,\s[а-яA-Z]+(\,\s[а-яA-Z]+|)$/gi)]);
+    this.schedule = new FormControl('', [Validators.required,
+      Validators.pattern(/^((|[0-1])[0-9]|2[0-3])\:[0-5][0-9]\s-\s((|[0-1])[0-9]|2[0-3])\:[0-5][0-9]$/g)]);
   }
 }
