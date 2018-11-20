@@ -35,6 +35,11 @@ export class AppComponent implements OnInit {
 
   addItem(id: number) {
     this.modalService.open(ItemsComponent).result.then((result) => {
+      for (const itm of this.shops[id - 1].goods) {
+        if (itm.itemName === result.itemName && itm.price === result.price && itm.description === result.description) {
+          alert('This item is already in this shop!'); return;
+        }
+      }
       const item = new Item(result.itemName, result.price, result.description);
       this.shops[id - 1].goods.push(item);
       localStorage.setItem(this.shops[id - 1].name, JSON.stringify(this.shops[id - 1]));
@@ -63,7 +68,7 @@ export class AppComponent implements OnInit {
   addShop() {
     this.modalService.open(ShopsComponent).result.then((result) => {
       for (const sh of this.shops) {
-        if (sh.name === result.shopName) {
+        if (sh.name === result.name && sh.address === result.address) {
           alert('You already have this shop!'); return;
         }
       }
@@ -71,7 +76,6 @@ export class AppComponent implements OnInit {
       ThriftShop.ID = this.shops.length + 1;
       this.addMark(ThriftShop, this.map).then(a => this.shops.push(ThriftShop));
       localStorage.setItem(ThriftShop.name, JSON.stringify(ThriftShop));
-      console.log(this.markers);
     });
   }
 
@@ -89,13 +93,11 @@ export class AppComponent implements OnInit {
     for (let i = 0; i < keys.length; i++) {
       this.shops.push(JSON.parse(localStorage.getItem(keys[i])));
     }
-    console.log(this.shops);
     this.shops.forEach(sh => this.addMark(sh, this.map));
   }
 
   deleteShop(shop: Shop) {
     this.shops = this.shops.filter(a => a !== shop);
-    console.log(shop.name);
     localStorage.removeItem(shop.name);
     this.shopsRefreshId();
     this.deleteLocation(shop);
@@ -120,4 +122,5 @@ export class AppComponent implements OnInit {
     this.map = new google.maps.Map(document.getElementById('map'), mapProps);
     this.getStorage();
   }
+
 }

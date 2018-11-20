@@ -9,17 +9,19 @@
     <div class="form-group">
       <div class="input-group">
         <label for="itemName">Name
-          <input id="itemName" class="form-control" placeholder="item name" [formControl]='itemName'>
+          <input id="itemName" class="form-control" placeholder="Item name" [formControl]='itemName'>
         </label>
         <br>
         <label for="price">Price
-          <input id="price" class="form-control" placeholder="price" [formControl]='price'>
+          <input id="price" class="form-control" placeholder="1234 or 0.12" [formControl]='price'>
         </label>
         <br>
         <label for="item-description">Description
-          <textarea id="item-description" class="item-description" placeholder="add some description" [formControl]='description'></textarea>
+          <textarea id="item-description" class="item-description" placeholder="Add some description" [formControl]='description'></textarea>
         </label>
-        <div id='error'></div>
+        <div id='errItemName'></div>
+        <div id='errPrice'></div>
+        <div id='errDescr'></div>
       </div>
     </div>
   </form>
