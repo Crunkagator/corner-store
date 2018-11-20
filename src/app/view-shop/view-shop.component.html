@@ -14,7 +14,7 @@
     </div>
     <div><h4 class="my-3">Goods:</h4>
       <div *ngIf='shop.goods.length == 0'>No items here :(</div>
-      <div *ngIf='shop.goods.length > 0' class="list-group">
+      <div *ngIf='shop.goods.length > 0' class="list-group itemlist-wrapper">
         <div class="list-group-item list-group-item-light" *ngFor='let i of shop.goods'>
           <div>Name : {{i.itemName}}</div>
           <div>Price : {{i.price}}</div>

@@ -14,7 +14,7 @@
     <div id='map' class='map-container'></div>
     <div class="shoplist-wrapper">
       <button class="btn btn-outline-dark" (click)='addShop()'>New shop</button>
-      <div *ngIf='shops' class="list-group list-group-flush shops-wrappe">
+      <div *ngIf='shops' class="list-group list-group-flush shops-wrapper">
         <div *ngFor='let s of shops' class="list-group-item">
           <a class="list-group-item list-group-item-action flex-column align-items-start">
             <div (click)='viewInfo(s)'>
